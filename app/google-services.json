@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "119911501001",
+    "project_id": "jurnalkasv1",
+    "storage_bucket": "jurnalkasv1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119911501001:android:a1ba7603847a1c5d969118",
+        "android_client_info": {
+          "package_name": "com.sigarda.jurnalkas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "119911501001-gfbkpfbmaepopjinvv35usevrl1fuebg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPywar8Hx_5vk6TYmGS8BkzetGglB7I5w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "119911501001-gfbkpfbmaepopjinvv35usevrl1fuebg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blueDark"
+    tools:context=".ui.fragment.spending.SpendingFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutSpending"
+        android:layout_width="match_parent"
+        android:layout_height="710dp"
+        android:background="@drawable/view_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="32dp"
+            android:background="@color/cardColor"
+            android:foregroundGravity="center"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.060000002"
+            app:singleLine="false"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSalary"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/salary"
+                android:textColor="#000000"
+                app:chipIcon="@drawable/icons8_money_with_wings_96"
+                app:chipIconEnabled="true"
+                app:rippleColor="@color/green" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipHousing"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/daily"
+                android:textColor="#000000"
+                app:chipIcon="@drawable/icons8_house_96"
+                app:chipIconEnabled="true"
+                app:chipIconVisible="true"
+                app:rippleColor="@color/green" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTraffic"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/traffic"
+                android:textColor="#000000"
+                app:chipIcon="@drawable/icons8_bus_96"
+                app:chipIconEnabled="true"
+                app:rippleColor="@color/green" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEat"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/eat"
+                android:textColor="#000000"
+                app:chipIcon="@drawable/icons8_steaming_bowl_96"
+                app:chipIconEnabled="true"
+                app:rippleColor="@color/green" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFoody"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/foody"
+                android:textColor="#000000"
+                app:chipIcon="@drawable/icons8_chocolate_bar_emoji_96"
+                app:chipIconEnabled="true"
+                app:rippleColor="@color/green" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEdu"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/education"
+                android:textColor="#000000"
+                app:chipIcon="@drawable/icons8_graduation_cap_96"
+                app:chipIconEnabled="true"
+                app:rippleColor="@color/green" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipParttime"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/parttime"
+                android:textColor="#000000"
+                app:chipIcon="@drawable/icons8_money_with_wings_96"
+                app:chipIconEnabled="true"
+                app:rippleColor="@color/green" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipInvest"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/invest"
+                android:textColor="#000000"
+                app:chipIcon="@drawable/icons8_money_with_wings_96"
+                app:chipIconEnabled="true"
+                app:rippleColor="@color/green" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPresent"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/present"
+                android:textColor="#000000"
+                app:chipIcon="@drawable/icons8_wrapped_gift_96"
+                app:chipIconEnabled="true"
+                app:rippleColor="@color/green" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipBonus"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bonus"
+                android:textColor="#000000"
+                app:chipIcon="@drawable/icons8_money_with_wings_96"
+                app:chipIconEnabled="true"
+                app:rippleColor="@color/green" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDaily"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/daily"
+                android:textColor="#000000"
+                app:chipIcon="@drawable/icons8_broom_96"
+                app:chipIconEnabled="true"
+                app:rippleColor="@color/green" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOthers"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/others"
+                android:textColor="#000000"
+                app:chipIcon="@drawable/ic_others"
+                app:chipIconEnabled="true"
+                app:rippleColor="@color/green" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_title_view"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="@string/text_title"
+            android:textColorHint="@color/dark_blue"
+            app:boxBackgroundColor="@color/cardColor"
+            app:layout_constraintBottom_toTopOf="@+id/et_amount_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.97">
+
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/dark_blue"
+                android:textColorHint="@color/dark_blue"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_amount_view"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="@string/text_expense_amount"
+            android:textColorHint="@color/dark_blue"
+            app:boxBackgroundColor="@color/cardColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+            app:layout_constraintVertical_bias="0.25">
+
+            <EditText
+                android:id="@+id/et_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textColor="@color/dark_blue"
+                android:textColorHint="@color/dark_blue"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:checked="true"
+            android:text="@string/income"
+            android:textColor="@color/blueDark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/et_when"
+            app:layout_constraintEnd_toStartOf="@+id/switchExpense"
+            app:layout_constraintHorizontal_bias="0.42"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_amount_view"
+            app:layout_constraintVertical_bias="0.51"
+            />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchExpense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:text="@string/expense"
+            android:textColor="@color/blueDark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/et_when"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toEndOf="@+id/switchIncome"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_amount_view"
+            app:layout_constraintVertical_bias="0.41000003" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/et_when"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:background="@drawable/view_round_card"
+            android:backgroundTint="@color/cardColor"
+            android:elevation="10dp"
+            android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textAllCaps="false"
+            android:textColor="@color/blueDark"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.303"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_amount_view"
+            app:layout_constraintVertical_bias="0.367" />
+
+        <ImageButton
+            android:id="@+id/accept"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="2dp"
+            android:layout_marginHorizontal="2dp"
+            android:layout_weight="2"
+            android:background="@drawable/view_round"
+            android:backgroundTint="@color/cardColor"
+            android:src="@drawable/check"
+            android:textColor="@color/blueDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_when"
+            app:layout_constraintVertical_bias="0.18" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonDelete"
+            android:text="@string/delete"
+            android:textSize="22sp"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="32dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/buttonUpdate"
+            app:layout_constraintTop_toBottomOf="@id/et_when"
+            android:backgroundTint="@color/red"
+            android:layout_marginTop="16dp">
+        </androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonUpdate"
+            android:text="@string/update"
+            android:visibility="gone"
+            android:textSize="22sp"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            app:layout_constraintLeft_toRightOf="@id/buttonDelete"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_when"
+            android:backgroundTint="@color/green"
+            android:layout_marginTop="16dp">
+        </androidx.appcompat.widget.AppCompatButton>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

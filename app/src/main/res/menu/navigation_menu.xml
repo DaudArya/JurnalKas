@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="@string/title_home"
+        android:contentDescription="@string/menu_dashboard"
+        android:icon="@drawable/house"/>
+    <item
+        android:id="@+id/calendarFragment"
+        android:title="@string/title_calendar"
+        android:contentDescription="@string/title_calendar"
+        android:icon="@drawable/ic_baseline_calendar_month_24"/>
+    <item
+        android:id="@+id/analyticFragment"
+        android:title="@string/title_chart"
+        android:contentDescription="@string/title_chart"
+        android:icon="@drawable/chartbar"/>
+
+</menu>
