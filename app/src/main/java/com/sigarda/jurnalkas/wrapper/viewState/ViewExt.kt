@@ -80,6 +80,9 @@ fun rupiah(amount: Double): String {
     return format.format(amount)
 }
 
+
+
+
 val String.cleanTextContent: String
     get() {
         // strips off all non-ASCII characters

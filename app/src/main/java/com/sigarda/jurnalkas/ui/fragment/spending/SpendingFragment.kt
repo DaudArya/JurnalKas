@@ -1,20 +1,15 @@
 package com.sigarda.jurnalkas.ui.fragment.spending
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.view.isEmpty
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.snackbar.Snackbar
 import com.sigarda.jurnalkas.R
 import com.sigarda.jurnalkas.data.local.entity.TransactionEntity
 import com.sigarda.jurnalkas.databinding.FragmentSpendingBinding
@@ -28,6 +23,7 @@ import com.sigarda.jurnalkas.utils.*
 import com.sigarda.jurnalkas.utils.enums.Type
 import com.sigarda.jurnalkas.wrapper.Extension.gone
 import com.sigarda.jurnalkas.wrapper.Extension.visible
+import me.abhinay.input.CurrencySymbols
 import java.util.*
 
 
@@ -43,11 +39,13 @@ class SpendingFragment : BaseFragment() {
     private val transactionViewModel: TransactionViewModel by viewModels()
 
     private var amount: Float? = null
+    private var title : String? = null
     private var isIncome: Boolean? = null
     private var type: String? = null
     private var selectedDate: Date? = null
     private var transacationType : String = ""
     private var isHomePage: Boolean = true
+    private var argsTitle: String? = null
     private var argsType: String? = null
     private var argsAmount: String? = null
     private var argsIsIncome: String? = null
@@ -75,6 +73,7 @@ class SpendingFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
             isHomePage = SpendingFragmentArgs.fromBundle(it).isHomePage
+            argsTitle = SpendingFragmentArgs.fromBundle(it).title
             argsType = SpendingFragmentArgs.fromBundle(it).type
             argsAmount = SpendingFragmentArgs.fromBundle(it).amount
             argsIsIncome = SpendingFragmentArgs.fromBundle(it).isIncome
@@ -84,7 +83,10 @@ class SpendingFragment : BaseFragment() {
         initViews()
         observeEvents()
 
+
     }
+
+
 
     private fun initViews() {
         if (!isHomePage) {
@@ -94,7 +96,12 @@ class SpendingFragment : BaseFragment() {
         }
         bottomNavigationViewVisibility = View.GONE
         toolbarVisibility = false
+
     }
+
+
+
+
 
 
 
@@ -154,26 +161,35 @@ class SpendingFragment : BaseFragment() {
         chipItems()
         switchItems()
         calendarItem()
-
         binding.accept.setOnClickListener {
-            amount = binding.etAmount.text.toString().toFloatOrNull()
-            isIncome = binding.switchIncome.isChecked
-            viewModel.addBudget(
-                amount = amount,
-                isIncome = isIncome,
-                type = type,
-                date = selectedDate
-            )
-//            transactionViewModel.insertTransaction(getTransactionContent()).run {
-//                binding.root.snack(
-//                    string = R.string.success_expense_saved
-//                )
-//            }
-            findNavController().navigate(
-                R.id.action_spendingFragment_to_homeFragment
-            )
+            binding.apply {
+                // validate if transaction content is empty or not
+                if (etTitle == null) {
+                    binding.etTitle.error = "Email must not be empty"
+                    }
+                    if (etAmount == null){
+                        binding.etAmount.error = "Email must not be empty"
+                    }
+                    else  {
+                        title = binding.etTitle.text.toString()
+                        amount = binding.etAmount.text.toString().toFloatOrNull()
+                        isIncome = binding.switchIncome.isChecked
+                        viewModel.addBudget(
+                            amount = amount,
+                            title = title,
+                            isIncome = isIncome,
+                            type = type,
+                            date = selectedDate
+                        )
+                        findNavController().navigate(
+                            R.id.action_spendingFragment_to_homeFragment
+                        )
+
+                        }
+                    }
+                }
         }
-    }
+
 
 
 
@@ -199,7 +215,7 @@ class SpendingFragment : BaseFragment() {
         binding.etWhen.text = argsDate
         binding.accept.gone()
         binding.buttonDelete.visible()
-        binding.buttonUpdate.visible()
+//        binding.buttonUpdate.visible()
 
 
 
@@ -218,6 +234,7 @@ class SpendingFragment : BaseFragment() {
         binding.buttonUpdate.setOnClickListener {
             viewModel.updateBudget(
                 amount = binding.etAmount.text.toString().toFloat(),
+                title = binding.etTitle.text.toString(),
                 isIncome = binding.switchIncome.isChecked,
                 type = type,
                 date = selectedDate,
@@ -284,10 +301,21 @@ class SpendingFragment : BaseFragment() {
         }
     }
 
-//    fun deleteData(it:View?){
-//        viewModel.deleteTransactionById(dataTrans.data.id!!)
-//        Toast.makeText(requireContext(), "Delete Note Successfully", Toast.LENGTH_LONG).show()
-//    }
+    private fun validateInput(): Boolean {
+        var isValid = true
+        val title = binding.etTitle.text.toString().trim()
+        val amount = binding.etAmount.text.toString().trim()
+
+        if (title.isEmpty()) {
+            isValid = false
+            binding.etTitle.error = "Title must not be empty"
+        }
+        if (amount.isEmpty()) {
+            isValid = false
+            binding.etAmount.error = "Amount must not be empty"
+        }
+        return isValid
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

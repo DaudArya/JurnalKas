@@ -12,6 +12,7 @@ class UpdateBudgetImpl @Inject constructor(
 
     override suspend operator fun invoke(
         amount: Float,
+        title : String,
         isIncome: Boolean,
         type: String,
         date: Date,
@@ -20,6 +21,7 @@ class UpdateBudgetImpl @Inject constructor(
     ): Task<Void> {
 
         val hashMap = hashMapOf<String, Any>(
+            Constant.TITLE to title,
             Constant.AMOUNT to amount,
             Constant.IS_INCOME to isIncome,
             Constant.TYPE to type,

@@ -32,11 +32,12 @@ class SpendingViewModel @Inject constructor(
         repository.deleteById(id)
     }
 
-    fun addBudget(amount: Float?, isIncome: Boolean?, type: String?, date: Date?) {
+    fun addBudget(amount: Float?,title: String?, isIncome: Boolean?, type: String?, date: Date?) {
         viewModelScope.launch {
             val currentUser = useCases.getCurrentUserInfo()
             if (
                 amount != null &&
+                title != null &&
                 isIncome != null &&
                 type != null &&
                 date != null &&
@@ -44,6 +45,7 @@ class SpendingViewModel @Inject constructor(
             ) {
                 useCases.saveBudget(
                     amount = amount,
+                    title = title,
                     isIncome = isIncome,
                     type = type,
                     date = date,
@@ -72,6 +74,7 @@ class SpendingViewModel @Inject constructor(
 
     fun updateBudget(
         amount: Float?,
+        title: String?,
         isIncome: Boolean?,
         type: String?,
         date: Date?,
@@ -81,6 +84,7 @@ class SpendingViewModel @Inject constructor(
             val currentUser = useCases.getCurrentUserInfo()
             if (
                 amount != null &&
+                title != null &&
                 isIncome != null &&
                 type != null &&
                 date != null &&
@@ -89,6 +93,7 @@ class SpendingViewModel @Inject constructor(
             ) {
                 useCases.updateBudget(
                     amount = amount,
+                    title = title,
                     isIncome = isIncome,
                     type = type,
                     date = date,

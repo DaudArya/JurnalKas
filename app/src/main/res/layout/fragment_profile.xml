@@ -19,24 +19,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:background="@drawable/view_round"
-            android:contentDescription="@string/logout"
-            android:src="@drawable/ic_logout"
-            android:clickable="true"
-            app:rippleColor="@color/cardColor"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayoutBlok"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.7"
-            app:layout_constraintStart_toEndOf="@+id/textView28"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.6" />
-
         <ImageView
             android:id="@+id/imageView17"
             android:layout_width="90dp"
@@ -57,31 +39,28 @@
             android:background="@drawable/view_oval"
             android:drawableStart="@drawable/ic_settings_white"
             android:drawablePadding="4dp"
+            android:gravity="center"
             android:paddingStart="8dp"
             android:paddingTop="3dp"
             android:paddingEnd="8dp"
-            android:text=" Pengaturan"
+            android:text="@string/profile_user"
             android:textColor="#F6FBFF"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayoutBlok"
+            android:textSize="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView17"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView17" />
 
         <LinearLayout
             android:id="@+id/linearLayoutBlok"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="52dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.9">
+            app:layout_constraintVertical_bias="0.44">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -109,7 +88,7 @@
                 android:paddingRight="70dp">
 
                 <ImageView
-                    android:id="@+id/imageView28"
+                    android:id="@+id/ivAva"
                     android:layout_width="wrap_content"
                     android:layout_height="80dp"
                     android:layout_weight="1"
@@ -123,11 +102,11 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView29"
+                        android:id="@+id/tvFullName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:text="Daud Wakwaw"
+                        android:text="User-90809"
                         android:textColor="@color/blueDark"
                         android:textSize="17dp"
                         android:textStyle="bold" />
@@ -137,7 +116,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Man who can't be moved"
+                        android:text="Active Account"
                         android:textColor="@color/blueDark" />
                 </LinearLayout>
 
@@ -152,7 +131,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="340dp"
-                android:layout_height="350dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@color/white"
@@ -162,7 +141,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="25dp">
 
@@ -191,10 +170,10 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/textView37"
+                            android:id="@+id/tvEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="daudwakwaw@gmail.com"
+                            android:text="email@example.com"
                             android:textColor="@color/blueDark" />
                     </LinearLayout>
 
@@ -213,12 +192,13 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/textView44"
+                            android:id="@+id/tvUsername"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="daudwakwaw"
+                            android:text="userJurnalkas"
                             android:textColor="@color/blueDark" />
                     </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -227,66 +207,49 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView43"
+                            android:id="@+id/tvUser"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Jenis Kelamin"
+                            android:text="ID User"
                             android:textColor="@color/blueDark"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/textView42"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Pria"
-                            android:textColor="@color/blueDark" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView41"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Nomor Telepon"
-                            android:textColor="@color/blueDark"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/textView40"
+                            android:id="@+id/tvId"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="085748799995"
                             android:textColor="@color/blueDark" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView39"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="NIK"
-                            android:textColor="@color/blueDark"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/textView38"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="3507005000000001"
-                            android:textColor="@color/blueDark" />
-                    </LinearLayout>
 
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/btLogout"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/view_round"
+                android:backgroundTint="@color/blueDark"
+                android:clickable="true"
+                android:contentDescription="@string/logout"
+                android:src="@drawable/ic_logout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.916"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutBlok"
+                app:layout_constraintVertical_bias="0.0" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

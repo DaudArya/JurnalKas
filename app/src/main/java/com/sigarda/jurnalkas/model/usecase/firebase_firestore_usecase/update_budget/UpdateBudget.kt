@@ -6,6 +6,7 @@ import java.util.*
 interface UpdateBudget {
     suspend operator fun invoke(
         amount: Float,
+        title : String,
         isIncome: Boolean,
         type: String,
         date: Date,

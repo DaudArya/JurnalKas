@@ -18,8 +18,8 @@ import com.sigarda.jurnalkas.adapter.transaction.remote.RemoteTransactionAdapter
 import com.sigarda.jurnalkas.data.local.entity.Transaction
 import com.sigarda.jurnalkas.data.local.entity.TransactionEntity
 import com.sigarda.jurnalkas.databinding.FragmentHomeBinding
+import com.sigarda.jurnalkas.model.TransactionUiModel
 import com.sigarda.jurnalkas.ui.fragment.base.BaseFragment
-import com.sigarda.jurnalkas.ui.fragment.spending.SpendingFragmentArgs
 import com.sigarda.jurnalkas.ui.fragment.spending.SpendingViewModel
 import com.sigarda.jurnalkas.utils.TransactionViewModel
 import com.sigarda.jurnalkas.wrapper.Extension.gone
@@ -31,7 +31,9 @@ import com.sigarda.jurnalkas.wrapper.show
 import com.sigarda.jurnalkas.wrapper.snack
 import com.sigarda.jurnalkas.wrapper.viewState.ViewState
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.NumberFormat
 import java.util.Date
+import java.util.Locale
 
 
 @AndroidEntryPoint
@@ -46,9 +48,10 @@ class HomeFragment : BaseFragment() {
     private var transactionAdapter = TransactionAdapter()
 
 
-    private var amount: Float? = null
+    private var amount: Int? = null
     private var isIncome: Boolean? = null
     private var type: String? = null
+    private var title: String? = null
     private var selectedDate: Date? = null
     private var transacationType : String = ""
     private var isHomePage: Boolean = true
@@ -82,6 +85,7 @@ class HomeFragment : BaseFragment() {
         observeEvent()
         observeFilter()
         observeTransaction()
+        observeEventAmount()
         initViews()
         navigate()
 
@@ -101,6 +105,7 @@ class HomeFragment : BaseFragment() {
                 isHomePage = true,
                 type = null,
                 amount = null,
+                title = null,
                 isIncome = null,
                 date = null,
                 documentId = null
@@ -109,15 +114,16 @@ class HomeFragment : BaseFragment() {
         }
 
 
-        remoteAdapter.onDeleteClick = { type, amount, isIncome, date, documentId ->
+        remoteAdapter.onDeleteClick = {  title, type, amount, isIncome, date, documentId ->
 
             val action = HomeFragmentDirections.actionHomeFragmentToSpendingFragment(
-                isHomePage = false,
                 type = type,
                 amount = amount,
-                isIncome = isIncome,
                 date = date,
-                documentId = documentId
+                isIncome = isIncome,
+                documentId = documentId,
+                isHomePage = false,
+                title = title
             )
             Navigation.findNavController(requireView()).navigate(action)
         }
@@ -161,6 +167,32 @@ class HomeFragment : BaseFragment() {
         }
     }
 
+    private fun observeEventAmount() {
+        viewModel.result.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    if (it.data != null && it.data.isEmpty().not()) {
+                        setIncomeExpense(it.data)
+                        binding.textViewError.gone()
+                        binding.progressBar.gone()
+//                        binding.textViewNullData.gone()
+                    } else {
+//                        binding.showLinearLayout.gone()
+//                        binding.textViewNullData.visible()
+                    }
+                }
+                is Resource.Error -> {
+                    binding.textViewError.visible()
+                    binding.progressBar.gone()
+                }
+                is Resource.Loading -> {
+                    binding.textViewError.gone()
+                    binding.progressBar.visible()
+                }
+            }
+        }
+    }
+
     private fun observeEvent() {
         viewModel.result.observe(viewLifecycleOwner) { list ->
             when (list) {
@@ -168,7 +200,6 @@ class HomeFragment : BaseFragment() {
                     if (list.data != null && list.data.isEmpty().not()) {
                         val newList = list.data.sortedWith(compareByDescending { it.date })
                         remoteAdapter.budgetList = newList
-
                         binding.transactionRv.visible()
                         binding.progressBar.gone()
                         binding.textViewError.gone()
@@ -197,6 +228,36 @@ class HomeFragment : BaseFragment() {
             }
         }
     }
+
+    private fun setIncomeExpense(list: List<TransactionUiModel>) {
+
+        var incomeAmount = 0f
+        var expenseAmount = 0f
+
+        var income = 0
+        var outcome = 0
+
+
+
+        list.forEach {
+            when (it.isIncome) {
+                true -> {
+                    incomeAmount += it.amount
+                    val strIncome: String = NumberFormat.getNumberInstance(Locale.US).format(incomeAmount)
+                    binding.incomeCardView.total.text = "+ "+strIncome
+                    income = incomeAmount.toInt()
+                }
+                else -> {
+                    expenseAmount += it.amount
+                    val strExpense: String = NumberFormat.getNumberInstance(Locale.US).format(expenseAmount)
+                    binding.expenseCardView.total.text = "- "+strExpense
+                    outcome = expenseAmount.toInt()
+                }
+            }
+            amount = income-outcome
+            val str: String = NumberFormat.getNumberInstance(Locale.US).format(amount)
+            binding.totalmoney.text = "IDR."+str
+        }}
 
     private fun setupRV() = with(binding) {
         transactionAdapter = TransactionAdapter()
@@ -239,6 +300,7 @@ class HomeFragment : BaseFragment() {
                 val transactionRemote = remoteAdapter.differ.currentList[positionRemote]
                 val transactionItemRemote = Transaction(
                     transactionRemote.id,
+                    transactionRemote.title,
                     transactionRemote.amount,
                     transactionRemote.isIncome,
                     transactionRemote.type,

@@ -47,21 +47,21 @@ class SplashFragment : BaseFragment() {
     private fun startSplashScreen() {
         binding.logo.alpha = 0f
         binding.logo.animate().setDuration(1000).alpha(1f).withEndAction {
-            checkCredential()
+            observeEvent()
         }
     }
 
-    private fun checkCredential() {
-        viewModel.getLoginStatus().observe(viewLifecycleOwner) {
-            if (it == true) {
-                observeEvent()
-                findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-            }
-            else {
-                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
-            }
-        }
-        }
+//    private fun checkCredential() {
+//        viewModel.getLoginStatus().observe(viewLifecycleOwner) {
+//            if (it == true) {
+////                observeEvent()
+//                findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+//            }
+//            else {
+//                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+//            }
+//        }
+//        }
 
     private fun observeEvent() {
         viewModel.isCurrentUserExist.observe(viewLifecycleOwner) {

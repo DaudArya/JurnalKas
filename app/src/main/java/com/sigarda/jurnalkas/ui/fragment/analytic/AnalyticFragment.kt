@@ -116,7 +116,7 @@ class AnalyticFragment : BaseFragment() {
 
     private fun setBarChart(list: List<TransactionUiModel>) {
 
-        val barEntry = ArrayList<BarEntry>()
+        val pieEntry = ArrayList<PieEntry>()
 
 
         list.forEach {
@@ -136,31 +136,31 @@ class AnalyticFragment : BaseFragment() {
                 else -> others += it.amount
             }
         }
-        barEntry.add(BarEntry(1f, salary, R.drawable.icons8_money_with_wings_96))
-        barEntry.add(BarEntry(2f, bonus, R.drawable.icons8_money_with_wings_96))
-        barEntry.add(BarEntry(3f, parttime, R.drawable.icons8_money_with_wings_96))
-        barEntry.add(BarEntry(4f, invest, R.drawable.icons8_money_with_wings_96))
-        barEntry.add(BarEntry(5f, eat, R.drawable.icons8_steaming_bowl_96))
-        barEntry.add(BarEntry(6f, food, R.drawable.icons8_chocolate_bar_emoji_96))
-        barEntry.add(BarEntry(7f, housing, R.drawable.icons8_house_96))
-        barEntry.add(BarEntry(8f, daily, R.drawable.icons8_broom_96))
-        barEntry.add(BarEntry(9f, traffic, R.drawable.icons8_bus_96))
-        barEntry.add(BarEntry(10f, education, R.drawable.icons8_graduation_cap_96))
-        barEntry.add(BarEntry(11f, present, R.drawable.icons8_wrapped_gift_96))
-        barEntry.add(BarEntry(12f, funny, R.drawable.icons8_admission_96))
-        barEntry.add(BarEntry(13f, others, R.drawable.ic_others))
+        pieEntry.add(PieEntry( salary, "salary"))
+        pieEntry.add(PieEntry( bonus, "bonus"))
+        pieEntry.add(PieEntry( parttime, "part time"))
+        pieEntry.add(PieEntry( invest, "invest"))
+        pieEntry.add(PieEntry( eat, "eat"))
+        pieEntry.add(PieEntry( food, "food"))
+        pieEntry.add(PieEntry( housing, "housing"))
+        pieEntry.add(PieEntry( daily, "daily"))
+        pieEntry.add(PieEntry( traffic, "traffic"))
+        pieEntry.add(PieEntry( education, "education"))
+        pieEntry.add(PieEntry( present, "present"))
+        pieEntry.add(PieEntry( funny, "fun"))
+        pieEntry.add(PieEntry( others, "others"))
 
-        val barDataSet = BarDataSet(barEntry, "list")
-        barDataSet.valueTextSize = 15f
-        barDataSet.setColors(*ColorTemplate.PASTEL_COLORS)
-        barDataSet.valueTextColor = Color.BLACK
+        val pieDataSet = PieDataSet(pieEntry, "")
+        pieDataSet.setColors(*ColorTemplate.PASTEL_COLORS)
+        pieDataSet.setColors(*ColorTemplate.PASTEL_COLORS)
 
-        val barData = BarData(barDataSet)
-        binding.barChart.setFitBars(false)
-        binding.barChart.data = barData
-        binding.barChart.description.text = "Bar Chart"
-        binding.barChart.xAxis.valueFormatter = IndexAxisValueFormatter()
-        binding.barChart.xAxis.position = XAxis.XAxisPosition.TOP
+        pieDataSet.valueTextSize = 30f
+        pieDataSet.valueTextColor = Color.BLACK
+        pieDataSet.formSize = 30f
+        pieDataSet.form = Legend.LegendForm.CIRCLE
+        val data = PieData(pieDataSet)
+
+        binding.barChart.data = data
         binding.barChart.animateY(2000)
     }
 

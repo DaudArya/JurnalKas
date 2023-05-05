@@ -146,7 +146,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="450dp"
         android:background="@drawable/view_bg"
         android:backgroundTint="@color/cardColor"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -216,7 +216,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/transaction_rv"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="310dp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

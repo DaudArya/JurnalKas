@@ -18,7 +18,6 @@ class GetBudgetFromFirestoreImpl @Inject constructor(
 
     override suspend operator fun invoke(): Resource<List<TransactionUiModel>> {
         val userId = auth.getCurrentUserInfo()!!.uid
-
         return try {
             Resource.Loading(data = null)
             val result = firestore.getBudgetDocuments(userId = userId)
@@ -27,6 +26,7 @@ class GetBudgetFromFirestoreImpl @Inject constructor(
             result.forEach {
                 val budget = Transaction(
                     amount = it.get(Constant.AMOUNT).toString().toFloat(),
+                    title = it.get(Constant.TITLE).toString(),
                     isIncome = it.get(Constant.IS_INCOME).toString().toBoolean(),
                     type = it.get(Constant.TYPE).toString(),
                     date = Date(it.get(Constant.DATE).toString().toLong()),

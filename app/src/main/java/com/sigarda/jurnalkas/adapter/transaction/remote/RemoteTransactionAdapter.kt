@@ -10,6 +10,8 @@ import com.sigarda.jurnalkas.databinding.ItemSpendingBinding
 import com.sigarda.jurnalkas.model.TransactionUiModel
 import com.sigarda.jurnalkas.utils.Constant
 import com.sigarda.jurnalkas.wrapper.Extension.toFormat
+import java.text.NumberFormat
+import java.util.Locale
 
 class RemoteTransactionAdapter : RecyclerView.Adapter<RemoteTransactionAdapter.ViewHolder>() {
     class ViewHolder(val binding: ItemSpendingBinding) :
@@ -46,15 +48,17 @@ class RemoteTransactionAdapter : RecyclerView.Adapter<RemoteTransactionAdapter.V
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.binding.apply {
-            transactionAmount.text = budgetList[position].amount.toString()
+            val strAmount: String = NumberFormat.getNumberInstance(Locale.US).format(budgetList[position].amount)
+            transactionName.text = budgetList[position].title
+            transactionAmount.text = strAmount
             transactionCategory.text = budgetList[position].type
-            transactionName.text = budgetList[position].type
             date.text = budgetList[position].date.toFormat(Constant.CURRENT_DATE_FORMAT)
             transactionIconView.setImageResource(budgetList[position].icon)
             transactionAmount.setTextColor(Color.parseColor(budgetList[position].cardColor))
 
             cardItem.setOnClickListener {
                 onDeleteClick?.invoke(
+                    budgetList[position].title,
                     budgetList[position].type,
                     budgetList[position].amount.toString(),
                     budgetList[position].isIncome.toString(),
@@ -67,6 +71,7 @@ class RemoteTransactionAdapter : RecyclerView.Adapter<RemoteTransactionAdapter.V
 
     var onDeleteClick: ((
         type: String,
+        title : String,
         amount: String,
         isIncome: String,
         date: String,

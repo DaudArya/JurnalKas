@@ -15,6 +15,7 @@ class TransactionMapper {
 
     private fun Transaction.toUiModel() = TransactionUiModel(
         amount = getAmount(),
+        title = getTitle(),
         isIncome = getIncome(),
         type = getType(),
         date = getDate(),
@@ -26,6 +27,7 @@ class TransactionMapper {
         id = id
     )
     private fun Transaction.getAmount() = amount
+    private fun Transaction.getTitle() = title
     private fun Transaction.getIncome() = isIncome
     private fun Transaction.getType() = type
     private fun Transaction.getDate() = date

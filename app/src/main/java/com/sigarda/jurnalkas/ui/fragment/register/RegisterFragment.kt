@@ -82,7 +82,7 @@ class RegisterFragment : BaseFragment() {
                     )
                         .apply {
                             setAction(getString(R.string.login)) {
-                                findNavController().navigate(R.id.action_registerFragment_to_verifyFragment)
+//                                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                             }
                             show()
                         }

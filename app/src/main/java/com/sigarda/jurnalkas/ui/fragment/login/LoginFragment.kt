@@ -56,7 +56,6 @@ class LoginFragment : BaseFragment() {
         binding.toRegisterButton.setOnClickListener { openRegister() }
         binding.loginButton.setOnClickListener (){
             loginUser()
-            SaveToken()
         }
     }
 
@@ -70,8 +69,8 @@ class LoginFragment : BaseFragment() {
                     Toast.makeText(context,it.value, Toast.LENGTH_SHORT).show()
                 }
                 is SignInState.VerificationIsSuccess-> {
-                    Toast.makeText(context,"Login successful", Toast.LENGTH_SHORT).show()
                     navigateToHome()
+                    saveToken()
                 }
                 is SignInState.Loading-> {
 
@@ -89,6 +88,14 @@ class LoginFragment : BaseFragment() {
             }
         }
 
+        binding.forgetPassword.setOnClickListener(){
+            Toast.makeText(requireContext(), "Fitur Belum Tersedia", Toast.LENGTH_LONG).show()
+            }
+        binding.google.setOnClickListener(){
+            Toast.makeText(requireContext(), "Fitur Belum Tersedia", Toast.LENGTH_LONG).show()
+        }
+
+
     }
     private fun loginUser() {
         if (validateInput()) {
@@ -98,7 +105,9 @@ class LoginFragment : BaseFragment() {
 
             binding.emailEditText.isEnabled = false
             binding.passwordEditText.isEnabled = false
+            viewModel.signInWithEmailAndPassword(email, password)
             viewModel.login(parseFormIntoEntity(email, password))
+
 
         }
     }
@@ -110,19 +119,9 @@ class LoginFragment : BaseFragment() {
             binding.passwordEditText.isEnabled = true
             when (it) {
                 is Resource.Success -> {
-                    Snackbar.make(
-                        binding.root,
-                        getString(R.string.successSignIn),
-                        Snackbar.LENGTH_LONG
-                    )
-                        .apply {
-                            setAction(getString(R.string.ok)) {
-                            }
-                            show()
-                        }
                     Log.d("loginResponse", it.data.toString())
                     viewModel.statusLogin(true)
-                    navigateToHome()
+//                    navigateToHome()
                 }
                 is Resource.Error -> {
                     Toast.makeText(requireContext(), "Login Failed, Check Your Data", Toast.LENGTH_LONG).show()
@@ -134,7 +133,7 @@ class LoginFragment : BaseFragment() {
         viewModel.getUserLoginStatus().observe(viewLifecycleOwner) {
             Log.d("getlogin", it.toString())
             if (it) {
-                navigateToHome()
+//                navigateToHome()
             }
         }
     }
@@ -181,13 +180,7 @@ class LoginFragment : BaseFragment() {
         findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-
-    private fun SaveToken() {
+    private fun saveToken() {
         viewModel.postLoginUserResponse.observe(viewLifecycleOwner){
             when(it){
                 is Resource.Success ->{
@@ -196,12 +189,30 @@ class LoginFragment : BaseFragment() {
                         //ini untuk set tokennya ke datastore
                         viewModel.setUserToken(token)
                         viewModel.SaveUserToken(token)
+                        Snackbar.make(
+                            binding.root,
+                            getString(R.string.successSignIn),
+                            Snackbar.LENGTH_LONG
+                        )
+                            .apply {
+                                setAction(getString(R.string.ok)) {
+                                }
+                                show()
+                            }
                     } else {
                         Toast.makeText(requireContext(), "token gagal di set", Toast.LENGTH_LONG).show()
                     }
                 }else -> {} }
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+
+
 
 }
 

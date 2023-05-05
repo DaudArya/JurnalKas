@@ -11,6 +11,8 @@ import com.sigarda.jurnalkas.databinding.ItemSpendingBinding
 import com.sigarda.jurnalkas.model.TransactionUiModel
 import com.sigarda.jurnalkas.utils.Constant
 import com.sigarda.jurnalkas.wrapper.Extension.toFormat
+import java.text.NumberFormat
+import java.util.Locale
 
 class CalendarAdapter : RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
     class ViewHolder(val binding: ItemSpendingBinding) :
@@ -44,11 +46,12 @@ class CalendarAdapter : RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.apply {
-            transactionAmount.text = calendarList[position].amount.toString()
+            val strAmount: String = NumberFormat.getNumberInstance(Locale.US).format(calendarList[position].amount)
+            transactionAmount.text = strAmount
             transactionCategory.text = calendarList[position].type
             transactionIconView.setImageResource(calendarList[position].icon)
             transactionAmount.setTextColor(Color.parseColor(calendarList[position].cardColor))
-            transactionName.text = calendarList[position].type
+            transactionName.text = calendarList[position].title
             date.text = calendarList[position].date.toFormat(Constant.CURRENT_DATE_FORMAT)
 
         }

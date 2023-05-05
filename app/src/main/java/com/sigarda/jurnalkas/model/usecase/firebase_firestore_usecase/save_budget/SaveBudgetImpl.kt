@@ -13,6 +13,7 @@ class SaveBudgetImpl @Inject constructor(
 
     override suspend operator fun invoke(
         amount: Float,
+        title : String,
         isIncome: Boolean,
         type: String,
         date: Date,
@@ -21,6 +22,7 @@ class SaveBudgetImpl @Inject constructor(
 
         val hashMap = hashMapOf<String, Any>(
             Constant.AMOUNT to amount,
+            Constant.TITLE to title,
             Constant.IS_INCOME to isIncome,
             Constant.TYPE to type,
             Constant.DATE to date.time,

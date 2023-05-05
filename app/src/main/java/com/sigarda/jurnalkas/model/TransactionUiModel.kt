@@ -4,6 +4,7 @@ import java.util.*
 
 data class TransactionUiModel(
     val amount: Float,
+    val title : String,
     val isIncome: Boolean,
     val type: String,
     val date: Date,
